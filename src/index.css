@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+@import "tailwindcss";
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.font-serif {
+    font-family: "Playfair", serif;
+}
+
+
+.hero-swiper .swiper-slide {
+  transition-timing-function: ease-in-out;
+}
+
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev {
+  color: #111827;
+  background: #ffbd73;
+  width: 46px;
+  height: 46px;
+  padding: 8px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hero-swiper .swiper-button-next:hover,
+.hero-swiper .swiper-button-prev:hover {
+  background: #ffa84d;
+  transform: scale(1.04);
+}
+
+.hero-swiper .swiper-button-next::after,
+.hero-swiper .swiper-button-prev::after {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  width: 26px;
+  height: 4px;
+  border-radius: 0;
+  background: #d4d4d8;
+  opacity: 1;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  width: 38px;
+  background: #ffbd73;
+}
+
+.feature-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.feature-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+.feature-swiper .swiper-slide > div {
+  width: 100%;
+}
