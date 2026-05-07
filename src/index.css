@@ -1,8 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
 @import "tailwindcss";
 
+/* ─── Container ──────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 1rem;
+  /* 16px side padding on all screens */
+  padding-right: 1rem;
+}
+
+/* Mobile-first breakpoints */
+@media (min-width: 480px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+
+/* ─── Typography ─────────────────────────────────────────────── */
 body {
-    font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .font-serif,
@@ -12,22 +74,47 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Playfair", serif;
+  font-family: "Playfair", serif;
 }
 
 
+/* ─── Hero Swiper ────────────────────────────────────────────── */
 .hero-swiper .swiper-slide {
   transition-timing-function: ease-in-out;
 }
 
+/* Nav buttons — base (mobile) */
 .hero-swiper .swiper-button-next,
 .hero-swiper .swiper-button-prev {
   color: #111827;
   background: #ffbd73;
-  width: 46px;
-  height: 46px;
-  padding: 8px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border-radius: 2px;
   transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Nav buttons — tablet and up */
+@media (min-width: 640px) {
+
+  .hero-swiper .swiper-button-next,
+  .hero-swiper .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+  }
+}
+
+/* Nav buttons — desktop */
+@media (min-width: 1024px) {
+
+  .hero-swiper .swiper-button-next,
+  .hero-swiper .swiper-button-prev {
+    width: 46px;
+    height: 46px;
+    padding: 8px;
+  }
 }
 
 .hero-swiper .swiper-button-next:hover,
@@ -36,26 +123,71 @@ h6 {
   transform: scale(1.04);
 }
 
+/* Arrow icon — scales with button */
 .hero-swiper .swiper-button-next::after,
 .hero-swiper .swiper-button-prev::after {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
 }
 
+@media (min-width: 640px) {
+
+  .hero-swiper .swiper-button-next::after,
+  .hero-swiper .swiper-button-prev::after {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .hero-swiper .swiper-button-next::after,
+  .hero-swiper .swiper-button-prev::after {
+    font-size: 16px;
+  }
+}
+
+/* Pagination bullets */
 .hero-swiper .swiper-pagination-bullet {
-  width: 26px;
-  height: 4px;
+  width: 20px;
+  height: 3px;
   border-radius: 0;
   background: #d4d4d8;
   opacity: 1;
   transition: width 0.3s ease, background 0.3s ease;
 }
 
+@media (min-width: 640px) {
+  .hero-swiper .swiper-pagination-bullet {
+    width: 24px;
+    height: 4px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-swiper .swiper-pagination-bullet {
+    width: 26px;
+  }
+}
+
 .hero-swiper .swiper-pagination-bullet-active {
-  width: 38px;
+  width: 30px;
   background: #ffbd73;
 }
 
+@media (min-width: 640px) {
+  .hero-swiper .swiper-pagination-bullet-active {
+    width: 34px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-swiper .swiper-pagination-bullet-active {
+    width: 38px;
+  }
+}
+
+
+/* ─── Feature Swiper ─────────────────────────────────────────── */
 .feature-swiper .swiper-wrapper {
   align-items: stretch;
 }
@@ -63,8 +195,26 @@ h6 {
 .feature-swiper .swiper-slide {
   height: auto;
   display: flex;
+
+  /* Show 1 card on mobile */
+  width: 100% !important;
 }
 
-.feature-swiper .swiper-slide > div {
+/* 2 cards side-by-side on tablet */
+@media (min-width: 640px) {
+  .feature-swiper .swiper-slide {
+    width: calc(50% - 8px) !important;
+  }
+}
+
+/* 3 cards on laptop/desktop — gap-aware width */
+@media (min-width: 1024px) {
+  .feature-swiper .swiper-slide {
+    width: calc(33.333% - 10.667px) !important;
+    /* accounts for two 16px gaps ÷ 3 */
+  }
+}
+
+.feature-swiper .swiper-slide>div {
   width: 100%;
 }
