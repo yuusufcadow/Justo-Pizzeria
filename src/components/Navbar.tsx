@@ -149,11 +149,7 @@ function Navbar() {
                 ))}
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 border-t border-zinc-200 bg-[#fffaf4] px-5 py-5">
-                <p className="text-base font-normal leading-7 text-zinc-600">
-                  Fresh pizza, bold taste, and fast service from Justo Pizzeria.
-                </p>
-              </div>
+            
             </motion.aside>
           </>
         )}
