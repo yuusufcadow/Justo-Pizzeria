@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import {
@@ -33,13 +33,14 @@ type HeroSlide = {
 
 function Hero() {
   const swiperRef = useRef<SwiperType | null>(null);
+  const navigate = useNavigate();
 
   const heroSlides: HeroSlide[] = [
     {
       eyebrow: "Fresh From The Oven",
       title: "A Purpose-Driven Pizza Brand",
       text: "Justo Pizzeria is built around fresh ingredients, bold flavor, warm hospitality, and a better pizza experience for every customer.",
-      buttonText: "Explore Menu",
+      buttonText: "Order Now",
       buttonLink: "/menu",
       image: pizza,
     },
@@ -55,11 +56,30 @@ function Hero() {
       eyebrow: "Fast Delivery",
       title: "Your Favorite Pizza, Hot And Fresh",
       text: "Whether you dine in, pick up, or order delivery, Justo brings fresh pizza and friendly service closer to you.",
-      buttonText: "Find Branch",
-      buttonLink: "/locations",
+      buttonText: "Order Now",
+      buttonLink: "/menu",
       image: gerate,
     },
   ];
+
+  const handleOrderClick = (e: React.MouseEvent<HTMLAnchorElement>, fallbackPath: string) => {
+    e.preventDefault();
+    const ua = navigator.userAgent || navigator.vendor;
+
+    if (/iPad|iPhone|iPod/.test(ua)) {
+      window.location.href = "juusto://";
+      setTimeout(() => {
+        window.location.href = "https://apps.apple.com/";
+      }, 2500);
+    } else if (/android/i.test(ua)) {
+      window.location.href = "juusto://";
+      setTimeout(() => {
+        window.location.href = "https://play.google.com/store/apps";
+      }, 2500);
+    } else {
+      navigate(fallbackPath);
+    }
+  };
 
   return (
     <section className="relative h-[calc(100svh-80px)] min-h-[560px] w-full overflow-hidden bg-zinc-950 sm:min-h-[620px]">
@@ -169,6 +189,7 @@ function Hero() {
                   >
                     <Link
                       to={slide.buttonLink}
+                      onClick={(e) => handleOrderClick(e, slide.buttonLink)}
                       className="group inline-flex h-12 items-center justify-center gap-3 bg-white px-6 text-xs font-semibold uppercase tracking-wide text-zinc-950 transition hover:bg-[#ffbd73] sm:h-14 sm:px-8 sm:text-sm"
                     >
                       {slide.buttonText}
@@ -176,13 +197,6 @@ function Hero() {
                         size={17}
                         className="transition duration-300 group-hover:translate-x-1"
                       />
-                    </Link>
-
-                    <Link
-                      to="/franchise"
-                      className="inline-flex h-12 items-center justify-center border border-white/25 bg-white/10 px-6 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur transition hover:border-[#ffbd73] hover:bg-[#ffbd73] hover:text-zinc-950 sm:h-14 sm:px-8 sm:text-sm"
-                    >
-                      Franchise
                     </Link>
                   </motion.div>
                 </motion.div>
